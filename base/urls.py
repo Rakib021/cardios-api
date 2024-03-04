@@ -7,4 +7,9 @@ urlpatterns = [
     path('advocates/',views.advocates_list,name='advocates'),
     # path('advocates/<str:username>/',views.advocates_detail),
     path('advocates/<str:username>/',views.AdvocateDetail.as_view()),
+    
+    
+    #/companies
+    path('companies/',views.companies_list,name='companies'),
+    #companies/:id
 ]

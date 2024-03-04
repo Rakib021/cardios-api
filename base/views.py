@@ -2,10 +2,11 @@ from django.shortcuts import render,redirect
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Advocates
+from .models import Advocates,Company
 from rest_framework.views import APIView
-from .serializers import AdvocateSerializer
+from .serializers import AdvocateSerializer,CompanySerializer
 from django.db.models import Q
+from django.http import Http404
 
 
 # Create your views here.
@@ -89,3 +90,13 @@ class AdvocateDetail(APIView):
 #     advocate.delete()
 #     return Response('User was deleted')
 
+
+#for companies
+@api_view(['GET'])
+def companies_list(request):
+  companies = Company.objects.all()
+  serializer = CompanySerializer(companies,many=True)
+  return Response(serializer.data)
+  
+  
+  
